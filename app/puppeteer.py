@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 
 sys.path.append(os.getcwd())
 
@@ -83,6 +84,8 @@ class PuppeteerApp:
         self.current_pose = None
         self.last_pose = None
 
+        self.start_time = time.time()
+        self.fps_count = 0
         self.master.after(1000 // 60, self.update_image())
 
     def load_image(self):
@@ -162,6 +165,12 @@ class PuppeteerApp:
             self.posed_image_label.image = photo_image
             self.posed_image_label.pack()
 
+        current_time = time.time()
+        self.fps_count += 1
+        if current_time - self.start_time >= 1:
+            self.master.title("Puppeteer - %.2f FPS" % (self.fps_count / (current_time - self.start_time)))
+            self.start_time = current_time
+            self.fps_count = 0
         self.master.after(1000 // 60, self.update_image)
 
     def on_closing(self):
