@@ -22,6 +22,7 @@ from tha.face_morpher import FaceMorpherSpec
 from tha.two_algo_face_rotator import TwoAlgoFaceRotatorSpec
 from util import rgba_to_numpy_image, extract_pytorch_image_from_filelike
 
+posed_background = None if len(sys.argv) < 2 else sys.argv[1]
 
 class PuppeteerApp:
     def __init__(self,
@@ -157,7 +158,7 @@ class PuppeteerApp:
             numpy_image = rgba_to_numpy_image(posed_image[0])
             pil_image = PIL.Image.fromarray(np.uint8(np.rint(numpy_image * 255.0)), mode='RGBA')
             photo_image = PIL.ImageTk.PhotoImage(image=pil_image)
-            self.posed_image_label.configure(image=photo_image, text="")
+            self.posed_image_label.configure(image=photo_image, text="", background=posed_background)
             self.posed_image_label.image = photo_image
             self.posed_image_label.pack()
 
