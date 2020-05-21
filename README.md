@@ -5,6 +5,16 @@ This repository contains code for two applications that make use of the neural n
 * The *manual poser* allows the user to pose an anime character by manually manipulating sliders.
 * The *puppeteer* makes an anime character imitate the head movement of the human capture by a webcam feed.
 
+## Modification Information
+
+This version is modified by MikeCAT.
+
+modifications to puppeteer:
+
+* Have it work with dlib 19.8.1 , which whl file has made public and easy to install.
+* Background color setting is added. (specify as first command line argument)
+* FPS display is added.
+
 ## Hardware Requirements
 
 As with many modern machine learning projects written with PyTorch, this piece of code requires **a recent and powerful Nvidia GPU** to run. I have personally run the code on a Geforce GTX 1080 Ti and a Titan RTX.
